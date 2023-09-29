@@ -22,7 +22,7 @@
     },
     {
       "content": "JavaScript, HTML, CSS are languages of Web-Application development",
-      "important": false,
+      "important": true,
       "id": 5
     }
   ]

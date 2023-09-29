@@ -3,11 +3,23 @@ import axios from 'axios'
 import Note from './components/Note'
 import Course from './components/Course'
 import noteService from './services/notes'
+import './index.css'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 //import './App.css'
 
 
+const Notification = ({message}) => {
+    if(message == null){
+        return null
+    }
+
+    return (
+        <div className = 'error'>
+            {message}
+        </div>
+    )
+}
 
 const Display = ({counter}) => {
     return (
@@ -77,6 +89,20 @@ const Hello = ({name, age}) => {
     )
  }
 
+ const Footer = () => {
+    const footerStyle = {
+        color: 'green',
+        fontStyle: 'italic',
+        fontSize: 30
+    }
+    return (
+        <div style = {footerStyle} >
+            <br />
+            <em>Note app, Department of Computer Science, University of Helsinki 2023</em>
+        </div>
+    )
+}
+
 
 
 const App = () => {
@@ -97,6 +123,8 @@ const App = () => {
 
       const handleLeftClick = () => setClicks({...clicks,left: clicks.left + 1})
       const handleRightClick = () => setClicks({...clicks,right: clicks.right + 1})
+
+      const [errorMessage, setErrorMessage] = useState('some error happened')
 
 
       const increaseByOne = () => setCounter(counter + 1)
@@ -146,9 +174,12 @@ const App = () => {
                 setNotes(notes.map(note => note.id!=id ? note : returnedNote))
             })
             .catch((error) =>  {
-                alert(
-                    `the note ${changedNote.content} already deleted from server`
+                setErrorMessage(
+                    `Note ${changedNote.content} already deleted from server`
                 )
+                setTimeout(() => {
+                    setErrorMessage(null)
+                },5000)
                 setNotes(notes.filter(note => note.id!=id))
             })
       }
@@ -309,7 +340,8 @@ const App = () => {
 //        )
         return (
             <div>
-                <h1>Notes</h1>
+                <h1 className = 'noteHeading' >Notes</h1>
+                <Notification message = {errorMessage} />
                 <ul>
                    {notesToShow.map(noteToShow => <Note key = {noteToShow.id} note = {noteToShow} toggleImportance = {() => toggleImportanceOf(noteToShow.id)} />)}
                 </ul>
@@ -324,6 +356,7 @@ const App = () => {
                     <input value = {newNote} onChange = {handleNoteChange} />
                     <button type = "submit">save</button>
                 </form>
+                <Footer />
             </div>
         )
 }
