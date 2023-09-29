@@ -1,0 +1,29 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "HTML is easy",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "Browser can execute only javascript",
+      "important": true
+    },
+    {
+      "id": 3,
+      "content": "GET and POST are two important methods of Javascript",
+      "important": false
+    },
+    {
+      "content": "JavaScript is interesting language",
+      "important": false,
+      "id": 4
+    },
+    {
+      "content": "JavaScript, HTML, CSS are languages of Web-Application development",
+      "important": false,
+      "id": 5
+    }
+  ]
+}
