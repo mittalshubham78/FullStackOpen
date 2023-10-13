@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/notes'
+const baseUrl = 'http://localhost:3001/api/notes'
 
 
 const getAll = () => {
@@ -17,8 +17,8 @@ const create = newObject => {
     return request.then(response => response.data)
 }
 
-const update = (id, newObject) => {
-    const request =  axios.put(`${baseUrl}/${id}`, newObject)
+const update = newObject => {
+    const request =  axios.patch(`${baseUrl}/${newObject.id}`, newObject)
     return request.then(response => response.data)
 }
 
